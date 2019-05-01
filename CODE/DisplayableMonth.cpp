@@ -5,7 +5,8 @@
 
 using namespace std;
 
-DisplayableMonth::DisplayableMonth(std::tm d, std::shared_ptr<DisplayableComponent> p, string monthname, unsigned int numdays) : CalendarComponent(d, p), name(monthname), numberOfDays(numdays) {
+DisplayableMonth::DisplayableMonth(std::tm d, std::shared_ptr<DisplayableComponent> p, string monthname, unsigned int numdays) 
+	: CalendarComponent(d, p), name(monthname), numberOfDays(numdays) {
 	// initialize children vector, one spot for each day
 	for (size_t i = 0; i < numberOfDays; ++i) {
 		children.push_back(nullptr);

@@ -4,7 +4,7 @@
 // forward declarations needed to avoid circular includes, used to declare friends only
 class FullCalendarBuilder;
 class CalendarInterface;
-// wah
+
 class Calendar : public CalendarComponent {
 	// friends
 	friend FullCalendarBuilder;

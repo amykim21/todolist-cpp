@@ -11,26 +11,27 @@ Group members: None
 1. Part 2.1: Adding events to the calendar
 Think about the separation of concerns in the project. 
 What class/classes is responsible for the user interface of the Calendar?
-
+CalendarInterface
 
 What class/classes is responsible for managing the representation and construction of the Calendar?
-
+CalendarBuilder declares the interface, and FullCalendarBuilder is a concrete class defining that interface.
 
 Which class should handle collecting information from the user about an event?
-
+CalendarInterface
 
 Which class should handle constructing and adding the event to the Calendar?
-
+FullCalendarBuilder
 
 
 
 2. Part 2.2 Make the calendar interactive
 How did you decide to efficiently search for an event by name?
-
+I made a multimap called eventMap in CalendarComponent.  Every time I build an event, I add it into eventMap.  Since multimaps can
+contain multiple pairs of the same key, eventMap can contain events with the same name; thus eventMap supports recurring events.
 
 
 Which object in the project understands the structure of the Calendar? Which object should be responsible for jumping to a specific object in the Calendar?
-
+DisplayableComponent (which contains the children vector) is responsible for jumping to a specific object in the Calendar.
 
 
 How did you design saving/restoring the calendar to/from a file? What information needs to be saved about a Calendar to successfully restore it?

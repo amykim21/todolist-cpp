@@ -24,34 +24,43 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\CODE\Calendar.h">
+    <ClInclude Include="Calendar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\CODE\CalendarBuilder.h">
+    <ClInclude Include="CalendarBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\CODE\CalendarComponent.h">
+    <ClInclude Include="CalendarComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\CODE\CalendarInterface.h">
+    <ClInclude Include="CalendarInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\CODE\DisplayableComponent.h">
+    <ClInclude Include="DisplayableComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\CODE\DisplayableDay.h">
+    <ClInclude Include="DisplayableDay.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\CODE\DisplayableMonth.h">
+    <ClInclude Include="DisplayableMonth.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\CODE\DisplayableYear.h">
+    <ClInclude Include="DisplayableYear.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\CODE\FullCalendarBuilder.h">
+    <ClInclude Include="FullCalendarBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\CODE\utilityfunctions.h">
+    <ClInclude Include="utilityfunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DisplayableEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ToDoList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Task.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -59,37 +68,43 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Lab5.cpp">
+    <ClCompile Include="Calendar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\CODE\Calendar.cpp">
+    <ClCompile Include="CalendarComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\CODE\CalendarComponent.cpp">
+    <ClCompile Include="CalendarInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\CODE\CalendarInterface.cpp">
+    <ClCompile Include="DisplayableComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\CODE\DisplayableComponent.cpp">
+    <ClCompile Include="DisplayableDay.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\CODE\DisplayableDay.cpp">
+    <ClCompile Include="DisplayableMonth.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\CODE\DisplayableMonth.cpp">
+    <ClCompile Include="DisplayableYear.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\CODE\DisplayableYear.cpp">
+    <ClCompile Include="FullCalendarBuilder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\CODE\FullCalendarBuilder.cpp">
+    <ClCompile Include="lab5_driver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\CODE\lab5_driver.cpp">
+    <ClCompile Include="utilityfunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\CODE\utilityfunctions.cpp">
+    <ClCompile Include="DisplayableEvent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ToDoList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Task.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

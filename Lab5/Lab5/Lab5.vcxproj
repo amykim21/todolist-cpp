@@ -145,37 +145,42 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\CODE\Calendar.h" />
-    <ClInclude Include="..\..\CODE\CalendarBuilder.h" />
-    <ClInclude Include="..\..\CODE\CalendarComponent.h" />
-    <ClInclude Include="..\..\CODE\CalendarInterface.h" />
-    <ClInclude Include="..\..\CODE\DisplayableComponent.h" />
-    <ClInclude Include="..\..\CODE\DisplayableDay.h" />
-    <ClInclude Include="..\..\CODE\DisplayableMonth.h" />
-    <ClInclude Include="..\..\CODE\DisplayableYear.h" />
-    <ClInclude Include="..\..\CODE\FullCalendarBuilder.h" />
-    <ClInclude Include="..\..\CODE\utilityfunctions.h" />
+    <ClInclude Include="Calendar.h" />
+    <ClInclude Include="CalendarBuilder.h" />
+    <ClInclude Include="CalendarComponent.h" />
+    <ClInclude Include="CalendarInterface.h" />
+    <ClInclude Include="DisplayableComponent.h" />
+    <ClInclude Include="DisplayableDay.h" />
+    <ClInclude Include="DisplayableEvent.h" />
+    <ClInclude Include="DisplayableMonth.h" />
+    <ClInclude Include="DisplayableYear.h" />
+    <ClInclude Include="FullCalendarBuilder.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Task.h" />
+    <ClInclude Include="ToDoList.h" />
+    <ClInclude Include="utilityfunctions.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\CODE\Calendar.cpp" />
-    <ClCompile Include="..\..\CODE\CalendarComponent.cpp" />
-    <ClCompile Include="..\..\CODE\CalendarInterface.cpp" />
-    <ClCompile Include="..\..\CODE\DisplayableComponent.cpp" />
-    <ClCompile Include="..\..\CODE\DisplayableDay.cpp" />
-    <ClCompile Include="..\..\CODE\DisplayableMonth.cpp" />
-    <ClCompile Include="..\..\CODE\DisplayableYear.cpp" />
-    <ClCompile Include="..\..\CODE\FullCalendarBuilder.cpp" />
-    <ClCompile Include="..\..\CODE\lab5_driver.cpp" />
-    <ClCompile Include="..\..\CODE\utilityfunctions.cpp" />
-    <ClCompile Include="Lab5.cpp" />
+    <ClCompile Include="Calendar.cpp" />
+    <ClCompile Include="CalendarComponent.cpp" />
+    <ClCompile Include="CalendarInterface.cpp" />
+    <ClCompile Include="DisplayableComponent.cpp" />
+    <ClCompile Include="DisplayableDay.cpp" />
+    <ClCompile Include="DisplayableEvent.cpp" />
+    <ClCompile Include="DisplayableMonth.cpp" />
+    <ClCompile Include="DisplayableYear.cpp" />
+    <ClCompile Include="FullCalendarBuilder.cpp" />
+    <ClCompile Include="lab5_driver.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Task.cpp" />
+    <ClCompile Include="ToDoList.cpp" />
+    <ClCompile Include="utilityfunctions.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

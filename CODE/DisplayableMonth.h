@@ -1,7 +1,8 @@
 #pragma once
 /*
 Author: Jon Shidal
-Purpose: declare the DisplayableMonth class. This class may be a component of a calendar. It inherits from CalendarComponent and defines pure virtual functions
+Purpose: declare the DisplayableMonth class. This class may be a component of a calendar. 
+It inherits from CalendarComponent and defines pure virtual functions
 declared in DisplayableComponent
 */
 
