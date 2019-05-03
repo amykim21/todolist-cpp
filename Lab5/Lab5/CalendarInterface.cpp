@@ -247,7 +247,7 @@ void CalendarInterface::zoomIn(unsigned int index) {
 		currentDisplay = temp;
 	}
 }
-
+ 
 void CalendarInterface::zoomOut() {
     // if the current display has a parent, update current display to the parent
 	if (currentDisplay->getParent().lock() != nullptr) {
