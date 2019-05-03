@@ -12,7 +12,7 @@ Purpose: Define full calendar builder class, responsible for building and managi
 #include <algorithm>		//**
 
 using namespace std;
-std::multimap<std::string, std::shared_ptr<DisplayableComponent>> CalendarComponent::eventMap;
+//std::multimap<std::string, std::shared_ptr<DisplayableComponent>> DisplayableComponent::eventMap;
 
 void test(std::shared_ptr<DisplayableComponent> cal);
 void test(std::shared_ptr<DisplayableComponent> cal) {
@@ -32,10 +32,6 @@ void test(std::shared_ptr<DisplayableComponent> cal) {
 		DisplayableDay* day = dynamic_cast<DisplayableDay*>(cal->children[0]->children[0]->children[i].get());
 		cout << day->dateInfo.tm_mon << " " << day->dateInfo.tm_mday << endl;
 	}
-	//cout << "Event: " << endl;
-	//DisplayableEvent* event = dynamic_cast<DisplayableEvent*>(cal->children[0]->children[0]->children[0]->children[0].get());
-	//cout << "event hour: " << event->dateInfo.tm_hour << endl;
-	//cout << "size of month vector: " << cal->children[0]->children.size() << endl;
 }
 
 // you may decide to define this.**
@@ -104,32 +100,20 @@ shared_ptr<DisplayableComponent> FullCalendarBuilder::buildEvent(shared_ptr<Disp
 	// CalendarComponent::CalendarComponent(std::tm d, std::shared_ptr<DisplayableComponent> p) : DisplayableComponent(p), dateInfo(d){}
 	shared_ptr<DisplayableComponent> e = make_shared<DisplayableEvent>(when, cal, name);
 	// add to eventMap
-	CalendarComponent::eventMap.insert(std::pair <std::string, std::shared_ptr<DisplayableComponent>>(name, e));	// previous unresolved external error, solved
+	cal->eventMap.insert(std::pair <std::string, std::shared_ptr<DisplayableComponent>>(name, e));	// previous unresolved external error, solved
 	return e;
 }
 
 //std::shared_ptr<DisplayableComponent> removeEvent();	//**
 std::shared_ptr<DisplayableComponent> FullCalendarBuilder::removeEvent(std::shared_ptr<DisplayableComponent> p, DisplayableEvent* e, std::string name, tm when) {
-	//auto it = CalendarComponent::eventMap.find(name);
-	//DisplayableEvent* event = dynamic_cast<DisplayableEvent*>(it->second.get());
-	////if (event->dateInfo == when) {
-
-	////}
-	//CalendarComponent::eventMap.erase(it);
 	typedef multimap<std::string, std::shared_ptr<DisplayableComponent>>::iterator eventItr;
-	std::pair<eventItr, eventItr> range = CalendarComponent::eventMap.equal_range(name);
+	std::pair<eventItr, eventItr> range = p->eventMap.equal_range(name);
 	for (eventItr it = range.first; it != range.second; it++) {
 		if (it->second.get() == e) {
-			CalendarComponent::eventMap.erase(it);
+			p->eventMap.erase(it);
+			break;
 		}
 	}
-
-
-	//eventItr userChoice = range.first;
-	//for (size_t k = 0; k < i; k++) {
-	//	userChoice++;
-	//}
-	//userChoice->second->display();
 
 	for (size_t i = 0; i < p->children[when.tm_year]->children[when.tm_mon]->children[when.tm_mday]->children.size(); ++i) {
 		if (e == p->children[when.tm_year]->children[when.tm_mon]->children[when.tm_mday]->children[i].get()) {

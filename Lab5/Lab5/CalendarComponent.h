@@ -56,7 +56,7 @@ protected:
 	static const std::vector<std::string> daysoftheweek;
 	static const std::vector<std::string> months;
 	static const std::vector<int> days;
-	static std::multimap<std::string, std::shared_ptr<DisplayableComponent>> eventMap;	//**
+	
 
 	static const unsigned int DAYSINAWEEK;
 	static const unsigned int MONTHS;

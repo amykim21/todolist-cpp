@@ -12,9 +12,10 @@ shared_ptr<ToDoList> ToDoList::instance(std::tm d, std::shared_ptr<DisplayableCo
 		//std::tm empty;
 		inst = new ToDoList(d, p);	//?? how to make DisplayableComponent to pass into constructor?
 		// push all events into children
-		//for (multimap<std::string, std::shared_ptr<DisplayableComponent>>::iterator it = eventMap.begin(); it != eventMap.end(); ++it) {
-		//	inst->children.push_back(it->second);
-		//}
+		for (multimap<std::string, std::shared_ptr<DisplayableComponent>>::iterator it = p->eventMap.begin(); it != p->eventMap.end(); ++it) {
+			//inst->children.push_back(it->second);
+			inst->addComponent(it->second);
+		}
 		shared_ptr<ToDoList> tdl(inst);
 		return tdl;
 	}
@@ -48,16 +49,13 @@ std::shared_ptr<DisplayableComponent> ToDoList::addComponent(std::shared_ptr<Dis
 	return nullptr;
 }
 
-void ToDoList::prioritizeComponent(unsigned int i) {
-
-}
-
 void ToDoList::markComplete(unsigned int i) {
-
+	Task* t = dynamic_cast<Task*>(children[i].get());
+	t->setComplete();
 }
 
 void ToDoList::fini() {
-	delete inst;
+	//delete inst;
 	inst = 0;
 }
 //ToDoList::~ToDoList() {

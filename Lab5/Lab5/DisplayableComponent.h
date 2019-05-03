@@ -8,6 +8,7 @@ It declares and defines the interface that all objects in the composite share.
 #include<vector>
 #include <iostream>
 #include <algorithm>
+#include <map>
 
 // forward declaration, needed for friend declaration
 class FullCalendarBuilder;
@@ -17,11 +18,14 @@ class CalendarInterface;
 class DisplayableComponent {
 	friend FullCalendarBuilder;
 	friend CalendarInterface;
+	friend class ToDoList;
+	friend class Task;
 	friend bool compareEvents(std::shared_ptr<DisplayableComponent> a, std::shared_ptr<DisplayableComponent> b);	//**
 	friend void test(std::shared_ptr<DisplayableComponent> cal);	//**
 public:
 	// defined by concrete classes deriving from DisplayableComponent
 	virtual void display() = 0;
+	std::multimap<std::string, std::shared_ptr<DisplayableComponent>> eventMap;	//**
 protected:
 	// member variables
 	std::vector<std::shared_ptr<DisplayableComponent> > children;

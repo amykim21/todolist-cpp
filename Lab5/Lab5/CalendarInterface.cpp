@@ -7,6 +7,7 @@
 #include "DisplayableYear.h" //**
 #include "Calendar.h"	//**
 #include "ToDoList.h"	//**
+#include "Task.h"	//**
 #include "utilityfunctions.h"	//**
 #include<iostream>
 #include <fstream>	//**
@@ -24,7 +25,6 @@ CalendarInterface::CalendarInterface(std::string builderType, std::string calend
 
 void CalendarInterface::run() {
 	// run until the user quits
-	//std::shared_ptr<DisplayableComponent> currentDisplay;
 	while (1) {
 		// display the current display of the calendar
 		currentDisplay->display();
@@ -37,10 +37,6 @@ void CalendarInterface::run() {
 		string in;
 		cin >> in;
 
-
-		//if (in == "test") {
-		//	test(currentDisplay);
-		//}
 		if (in == "create") {
 			cout << "Enter name of the event:" << endl;
 			string name;
@@ -89,7 +85,7 @@ void CalendarInterface::run() {
 			string eventSearch;
 			cin >> eventSearch;
 			typedef multimap<std::string, std::shared_ptr<DisplayableComponent>>::iterator eventItr;// = CalendarComponent::eventMap.find(eventSearch);
-			std::pair<eventItr, eventItr> range = CalendarComponent::eventMap.equal_range(eventSearch);
+			std::pair<eventItr, eventItr> range = cal->eventMap.equal_range(eventSearch);
 			// if key doesn't exist
 			int eventsFound = std::distance(range.first, range.second);
 			if (eventsFound == 0) {
@@ -151,7 +147,7 @@ void CalendarInterface::run() {
 				// disregard builder type for now
 				// all lines onward contain event information
 				multimap<std::string, std::shared_ptr<DisplayableComponent>>::iterator eventItr;
-				for (eventItr = CalendarComponent::eventMap.begin(); eventItr != CalendarComponent::eventMap.end(); eventItr++) {
+				for (eventItr = cal->eventMap.begin(); eventItr != cal->eventMap.end(); eventItr++) {
 					ofs << eventItr->first << "\n";
 					DisplayableEvent* e = dynamic_cast<DisplayableEvent*>(eventItr->second.get());
 					ofs << e->dateInfo.tm_year << "\n" << e->dateInfo.tm_mon << "\n" << e->dateInfo.tm_mday << "\n"
@@ -177,7 +173,7 @@ void CalendarInterface::run() {
 			}
 			cal = builder->buildCalendar(calName, y);	//**buildCalendar only goes to buildDay()
 			currentDisplay = cal;
-			CalendarComponent::eventMap.clear();	// clear multimap
+			cal->eventMap.clear();	// clear multimap
 			string eventName;
 			while (ifs >> eventName >> date.tm_year >> date.tm_mon >> date.tm_mday >> date.tm_hour >> date.tm_min) {
 				cal->children[date.tm_year]->children[date.tm_mon]->children[date.tm_mday]->addComponent(builder->buildEvent(cal, eventName, date));
@@ -197,41 +193,31 @@ void CalendarInterface::run() {
 				string str;
 				cin >> str;
 				if (str == "delete") {
+					shared_ptr<DisplayableComponent> temp = currentDisplay->getParent().lock();
+					std::vector<std::shared_ptr<DisplayableComponent>>::iterator it = std::find(temp->children.begin(), temp->children.end(), currentDisplay);
+					//cal->children[day->dateInfo.tm_year]->children[day->dateInfo.tm_mon]->children[day->dateInfo.tm_mday]->children[std::distance(temp->children.begin(), it)] = nullptr;
+					//std::multimap<std::string, std::shared_ptr<DisplayableComponent>>::iterator erase;
+					//for (std::multimap<std::string, shared_ptr<DisplayableComponent>>::iterator it = cal->eventMap.begin(); it != cal->eventMap.end(); ++it)
+					//{
+					//	if (it->second == currentDisplay) {
+					//		//erase = it;
+					//		printf("found\n");
+					//		cal->eventMap.erase(it);
+					//	}
+					//}
+
 					builder->removeEvent(cal, e, e->name, e->dateInfo);
-					//std::shared_ptr<DisplayableComponent> removeComponent(unsigned int);
-					//make event to nullptr, then make currentDisplay into day
-					//unsigned int index = 0;
-
-					//currentDisplay = e->getParent();
-
-
+					zoomOut();
 				}
 				else if (str == "change") {
-
+					cout << "What date would you like to move this event to?" << endl;
 				}
-
 			}
+			currentDisplay = cal;
 		}
 		else if (in == "todolist") {
-			cout << "TODO List:" << endl;
-			std::shared_ptr<DisplayableComponent> tdl = ToDoList::instance(cal->dateInfo, cal);
-			tdl->display();
-			//for (size_t i = 0; i < tdl->children.size(); ++i) {
-			//	DisplayableEvent* e = dynamic_cast<DisplayableEvent*>(tdl->children[i].get());
-			//	e->display();
-			//	//cout << e->name << endl;
-			//}
-			currentDisplay = tdl;
-			cout << "add task: add, mark a task complete: complete, go back to calendar: calendar" << endl;
-			//string str;
-			//cin >> str;
-			//while (str != "calendar") {
-
-			//	cin >> str;
-			//}
-			
-			//shared_ptr<DisplayableComponent> task = Task();
-			//tdl->addComponent();
+			todolist();
+			//currentDisplay = tdl;
 		}
 
 		else if (in == "in") {
@@ -268,4 +254,42 @@ void CalendarInterface::zoomOut() {
 		// create a shared_ptr from a weak_ptr, contributing to the objects reference count
 		currentDisplay = currentDisplay->getParent().lock();
 	}
+}
+
+void CalendarInterface::todolist() {
+	cout << "TODO List:" << endl;
+	std::shared_ptr<ToDoList> tdl = ToDoList::instance(cal->dateInfo, cal);
+	tdl->display();
+	cout << "add task: add, mark a task complete: complete, go back to calendar: calendar" << endl;
+	string str = "";
+	cin >> str;
+	//while (str != "calendar") {
+	//cout << "add task: add, mark a task complete: complete, go back to calendar: calendar" << endl;
+	if (str == "add") {
+		cout << "what is the name of the task you want to add?" << endl;
+		string taskName;
+		cin >> taskName;
+		std::shared_ptr<DisplayableComponent> task = make_shared<Task>(cal->dateInfo, cal, taskName);
+		tdl->addComponent(task);
+	}
+	else if (str == "complete") {
+		cout << "which event would you like to mark complete?" << endl;
+		int i;
+		cin >> i;
+		tdl->markComplete(i);
+		//tdl->display();
+		//typedef multimap<std::string, std::shared_ptr<DisplayableComponent>>::iterator eventItr;// = CalendarComponent::eventMap.find(eventSearch);
+		////std::pair<eventItr, eventItr> range = CalendarComponent::eventMap.equal_range(eventSearch);
+		////int eventsFound = std::distance(range.first, range.second);
+		//eventItr userChoice = range.first;
+		//for (size_t k = 0; k < i; k++) {
+		//	userChoice++;
+		//}
+		//CalendarComponent::eventMap
+		//currentDisplay = userChoice->second;
+
+
+	}
+	tdl->display();
+	ToDoList::fini();
 }

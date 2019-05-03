@@ -7,7 +7,6 @@ class Task : public CalendarComponent {
 public:
 	//std::shared_ptr<DisplayableComponent> addComponent(std::shared_ptr<DisplayableComponent>) override;	// leaf class, no need to override
 	Task(std::tm d, std::shared_ptr<DisplayableComponent> p, std::string name);
-	//string name;
 	void display() override;
 	//void display();
 	void setComplete();
